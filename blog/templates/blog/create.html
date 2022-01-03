@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block page_title %}
+Créate Article
+{%endblock%}
+    {% block content %}
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <h1>Show article</h1>
+            </div>
+            <div class="col-md-6 text-end"><a href="{% url 'articles_list' %}" class="btn btn-info">Back to list</a></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{% url 'create_article' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {% for input in form %}
+                        <label for="">{{ input.label }}</label>
+                        {{ input }}
+                        {% endfor %}                        
+                    </div>
+                    <div class="d-grid mt-3">
+                        <button type="submit" class="btn btn-primary">
+                          <i class="bi bi-pencil-fill"></i> Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        
+    {% endblock %}
